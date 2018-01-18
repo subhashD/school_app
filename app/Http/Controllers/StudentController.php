@@ -67,19 +67,22 @@ class StudentController extends Controller
 
     public function studentFilter(Request $request)
     {
-    	$students = Student::when($request->search_gender,function($query) use ($request){
-    			if($request->search_gender != "")
-                  $query->where('gender',$request->search_gender);
-                })
-    			->when($request->search_state,function($query) use ($request){
-    			if($request->search_state != "")
-                  $query->where('state',$request->search_state);
-                })
-                ->when($request->search_standard,function($query) use ($request){
-                  $query->where('standard',$request->search_standard);
-                })
-    			->whereDate('dob','>',date('Y-m-d',strtotime($request->birth_date)))->get();
       $states=State::all();
+      $students = Student::when($request->search_gender,function($query) use ($request){
+		if($request->search_gender != "")
+          $query->where('gender',$request->search_gender);
+        })
+		->when($request->search_state,function($query) use ($request){
+		if($request->search_state != "")
+          $query->where('state',$request->search_state);
+        })
+        ->when($request->search_standard,function($query) use ($request){
+          $query->where('standard',$request->search_standard);
+        })
+        ->when($request->birth_date,function($query) use ($request){
+          $query->whereDate('dob','=',date('Y-m-d',strtotime($request->birth_date)));
+        })->get();
+        
       return view('admin.students',compact('students','states'));
     }
 

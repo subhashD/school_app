@@ -10,6 +10,7 @@
 <div class="card bg-white animated slideInRight" id="divTable">
   <div class="card-header bg-primary-lighter text-white">
     <div class="row">
+        <a href="/" class="btn btn-primary btn-sm "><i class="fa fa-refresh"></i> Reset Filters</a>
       <div class="pull-right">
           <a href="/export_student" class="btn btn-primary btn-sm "><i class="fa fa-download"></i> Export</a>
           <a href="#importModal" data-toggle="modal" id="addMoreAddress" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> Import</a>
